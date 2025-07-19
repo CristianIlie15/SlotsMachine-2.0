@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slot Machine</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="./img/slots.jpg" />
+</head>
+<body>
+  <h1>Slot Machine 🎰</h1>
+
+  <div id="wallet">Balance: <span id="balance">200</span> $</div>
+
+  <div id="slotGrid" class="grid"></div>
+
+  <div id="betControls">
+    <button id="minusBet">-</button>
+    <span id="betDisplay">5</span> $
+    <button id="plusBet">+</button>
+  </div>
+
+  <div id="controls">
+    <button id="spinBtn">Spin</button>
+  </div>
+
+  <div id="result">Win: <span id="win">0</span> $</div>
+
+  <div id="doubleControls" style="display: none;">
+    <p>Double the winnings?</p>
+    <button class="doubleBtn" data-choice="red">Red</button>
+    <button class="doubleBtn" data-choice="black">Black</button>
+    <p id="doubleMessage"></p>
+  </div>
+
+  <script src="slotLogic.js"></script>
+</body>
+</html>
