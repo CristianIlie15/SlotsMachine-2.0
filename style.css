@@ -1,176 +1,247 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none;
-  }
+body {
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 34px 21px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container slot machine */
+#slotMachine {
+  background: rgba(15, 52, 96, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 35px 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Titlu */
+h1 {
+  margin-bottom: 80px;
+  font-weight: 720;
+  letter-spacing: 3px;
+  color: #e94560;
+  text-shadow: 0 0 10px #da435c;
+}
+
+/* Slot grid */
+#slotGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 12px;
+  justify-content: center;
+  margin: 30px 0 40px;
+}
+
+#slotGrid img {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  background: #16213e;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 10px #0e2e55;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+#slotGrid img:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 15px 6px rgba(255, 214, 0, 0.6);
+}
+
+#slotGrid img.glow {
+  box-shadow:
+    0 0 6px 3px #ffd600,
+    0 0 12px 5px #ffd600;
+  transform: scale(1.07);
+}
+
+/* Control buttons */
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+#betControls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 35px;
+  color: #ffd600;
+}
+
+#betControls button {
+  padding: 14px 24px;
+  font-size: 18px;
+}
+
+/* General button styling */
+button {
+  background: #e94560;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  margin: 6px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow:
+    0 0 8px #e94560,
+    0 0 18px #e94560,
+    0 0 24px #e94560;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: #ff2e44;
+  box-shadow:
+    0 0 12px #ff2e44,
+    0 0 22px #ff2e44;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Status display (wallet, bet, win) */
+#status {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#status div {
+  background: #16213e;
+  padding: 10px 18px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px #0f3460;
+  min-width: 110px;
+  user-select: none;
+}
+
+#wallet {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #ffce00;
+  text-shadow: 0 0 8px #ffce00;
+}
+
+#result {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 20px;
+  color: #4fec89;
+  text-shadow: 0 0 8px #2ecc71;
+}
+
+/* Double-game section */
+#doubleControls {
+  margin-top: 15px;
+  display: none;
+  gap: 15px;
+  justify-content: center;
+}
+
+#doubleMessage {
+  margin-top: 14px;
+  font-weight: 750;
+  color: #f8db4c;
+  text-shadow: 0 0 10px #ddbb0f;
+  min-height: 24px;
+}
+
+/* === Responsive Styles === */
+
+@media (max-width: 480px) {
   body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 34px 21px;
+    font-size: 13px;
   }
 
-  /* Container general */
-  #slotMachine {
-    background: #0f3460;
-    border-radius: 16px;
-    padding: 31px 45px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-  }
-
-  h1 {
-    margin-bottom: 80px;
-    font-weight: 720;
-    letter-spacing: 3px;
-    color: #e94560;
-    text-shadow: 0 0 10px #da435c;
-  }
-
-  /* Grid slot */
   #slotGrid {
-    display: grid;
-    grid-template-columns: repeat(5, 80px);  
-    grid-template-rows: repeat(3, 80px);     
-    gap: 10px;
-    justify-content: center;
-    margin: 25px 0 30px;
+    grid-template-columns: repeat(5, 46px);
+    grid-template-rows: repeat(3, 46px);
+    gap: 4px;
   }
 
-  /* Simboluri grid */
   #slotGrid img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    transition: box-shadow 0.33s ease, transform 0.33s ease;
-    background: #16213e;
-    box-shadow: inset 0 0 10px #0e2e55;
-    cursor: default;
-  }
-
-
-  #slotGrid img.glow {
-    box-shadow:
-      0 0 6px 3px #ffd600,
-      0 0 12px 5px #ffd600;
-    transform: scale(1.07);
-  }
-
-
-  #controls {
-    display: flex;
-    justify-content: center;
-    gap: 17px;
-    margin-bottom: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 6px;
   }
 
   button {
-    background: #e94560;
-    border: none;
-    border-radius: 12px;
-    color: #fff;
-    margin:2px;
-    padding: 10px 18px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0 4px 10px rgba(233, 69, 96, 0.6);
-    transition: background-color 0.25s ease, transform 0.2s ease;
+    font-size: 13px;
+    padding: 8px 14px;
   }
 
-  button:hover {
-    background: #ff2e44;
-    transform: scale(1.05);
+  #betControls {
+    font-size: 1rem;
+    gap: 10px;
   }
 
-  button:active {
-    transform: scale(0.95);
-  }
-
-  /* Display bet, balance, win */
-  #status {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  #status div {
-    background: #16213e;
-    padding: 10px 18px;
-    border-radius: 12px;
-    box-shadow: inset 0 0 6px #0f3460;
-    min-width: 110px;
-    user-select: none;
-  }
-
-  /* Double-game control */
-  #doubleControls {
-    margin-top: 15px;
-    display: none;
-    gap: 15px;
-    justify-content: center;
-  }
-
+  #wallet,
+  #result,
   #doubleMessage {
-    margin-top: 14px;
-    font-weight: 750;
-    color: #ffd600;
-    text-shadow: 0 0 10px #ddbb0f;
-    min-height: 24px;
+    font-size: 0.95rem;
   }
-  
+}
 
-  @media (max-width: 480px) {
-    #slotGrid {
-      grid-template-columns: repeat(5, 50px);
-      grid-template-rows: repeat(3, 50px);
-      gap: 8px;
-    }
-
-    #slotGrid img {
-      width: 50px;
-      height: 50px;
-    }
-
-    button {
-      font-size: 14px;
-      padding: 8px 14px;
-    }
-
-    #status {
-      font-size: 16px;
-    }
+@media (min-width: 1100px) {
+  #slotGrid {
+    grid-template-columns: repeat(5, 110px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 22px;
   }
 
-  @media (min-width:600px) {
-    #slotGrid {
-      grid-template-columns: repeat(5, 100px);
-      grid-template-rows: repeat(3, 100px);
-      gap: 8px;
-    }
-
-    #slotGrid img {
-      width: 100px;
-      height: 100px;
-    }
-
-    button {
-      font-size: 16px;
-      padding: 8px 16px;
-    }
-
-    #status {
-      font-size: 18px;
-    }
+  #slotGrid img {
+    width: 110px;
+    height: 110px;
   }
+
+  button {
+    font-size: 20px;
+    padding: 16px 32px;
+  }
+
+  #betControls {
+    font-size: 1.5rem;
+  }
+
+  #wallet,
+  #result,
+  #doubleMessage {
+    font-size: 1.8rem;
+  }
+}
